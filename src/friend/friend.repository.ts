@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { friends } from 'src/data';
+import { friends } from '../data';
 import { Friend } from './friend.entity';
 
 @Injectable()

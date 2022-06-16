@@ -9,7 +9,7 @@ export class FriendRepository {
     return friends.filter((friend) => friend.studentId === studentId);
   }
 
-  public async getAllByStudentIds(
+  public async getAllFriendsByStudentIds(
     studentIds: readonly number[],
   ): Promise<Friend[]> {
     console.log(

@@ -10,9 +10,9 @@ export class FriendService {
     return await this.friendRepository.getStudentFriends(studentId);
   }
 
-  public async getAllByStudentIds(
+  public async getAllFriendsByStudentIds(
     studentIds: readonly number[],
   ): Promise<Friend[]> {
-    return await this.friendRepository.getAllByStudentIds(studentIds);
+    return await this.friendRepository.getAllFriendsByStudentIds(studentIds);
   }
 }

@@ -1,0 +1,19 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Friend {
+  id: Float!
+  name: String!
+}
+
+type Student {
+  id: Float!
+  name: String!
+  class: String!
+  friends: [Friend!]!
+}
+
+type Query {
+  students: [Student!]!
+}

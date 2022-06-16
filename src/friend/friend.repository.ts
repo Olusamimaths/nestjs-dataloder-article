@@ -8,13 +8,4 @@ export class FriendRepository {
     console.log(`SELECT * FROM friends WHERE studentId = ${studentId}`);
     return friends.filter((friend) => friend.studentId === studentId);
   }
-
-  public async getAllFriendsByStudentIds(
-    studentIds: readonly number[],
-  ): Promise<Friend[]> {
-    console.log(
-      `SELECT * FROM friends WHERE studentId IN (${studentIds.join(',')})`,
-    );
-    return friends.filter((friend) => studentIds.includes(friend.studentId));
-  }
 }

@@ -1,18 +1,15 @@
-import {
-  Context,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql';
-import { IDataloaders } from 'src/dataloader/dataloader.interface';
-import { Friend } from 'src/friend/friend.entity';
+import { Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { Friend } from '../friend/friend.entity';
+import { FriendService } from 'src/friend/friend.service';
 import { Student } from './student.entity';
 import { StudentService } from './student.service';
 
 @Resolver(Student)
 export class StudentResolver {
-  constructor(private readonly studentService: StudentService) {}
+  constructor(
+    private readonly studentService: StudentService,
+    private readonly friendService: FriendService,
+  ) {}
 
   @Query(() => [Student])
   async students() {
@@ -20,11 +17,8 @@ export class StudentResolver {
   }
 
   @ResolveField('friends', () => [Friend])
-  getFriends(
-    @Parent() student: Student,
-    @Context() { loaders }: { loaders: IDataloaders },
-  ) {
+  async getFriends(@Parent() student: Student) {
     const { id: studentId } = student;
-    return loaders.friendsLoader.load(studentId);
+    return await this.friendService.getStudentFriends(studentId);
   }
 }

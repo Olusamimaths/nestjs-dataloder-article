@@ -15,20 +15,4 @@ export class FriendService {
   ): Promise<Friend[]> {
     return await this.friendRepository.getAllByStudentIds(studentIds);
   }
-
-  public async getStudentsFriendsByBatch(
-    studentIds: readonly number[],
-  ): Promise<(Friend | any)[]> {
-    const friends = await this.getAllByStudentIds(studentIds);
-
-    const mappedResults = this._mapResultToIds(studentIds, friends);
-    return mappedResults;
-  }
-
-  private _mapResultToIds(studentIds: readonly number[], friends: Friend[]) {
-    return studentIds.map(
-      (id) =>
-        friends.filter((friend: Friend) => friend.studentId === id) || null,
-    );
-  }
 }

@@ -10,16 +10,16 @@ export class FriendService {
     return await this.friendRepository.getStudentFriends(studentId);
   }
 
-  public async getAllByStudentIds(
+  public async getAllFriendsByStudentIds(
     studentIds: readonly number[],
   ): Promise<Friend[]> {
-    return await this.friendRepository.getAllByStudentIds(studentIds);
+    return await this.friendRepository.getAllFriendsByStudentIds(studentIds);
   }
 
   public async getStudentsFriendsByBatch(
     studentIds: readonly number[],
   ): Promise<(Friend | any)[]> {
-    const friends = await this.getAllByStudentIds(studentIds);
+    const friends = await this.getAllFriendsByStudentIds(studentIds);
 
     const mappedResults = this._mapResultToIds(studentIds, friends);
     return mappedResults;

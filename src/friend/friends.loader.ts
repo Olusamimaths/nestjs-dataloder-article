@@ -4,7 +4,7 @@ import { FriendService } from './friend.service';
 
 export function createFriendsLoader(friendService: FriendService) {
   return new DataLoader<number, Friend>(async (studentIds) => {
-    const friends = await friendService.getAllByStudentIds(studentIds);
+    const friends = await friendService.getAllFriendsByStudentIds(studentIds);
 
     const mappedResults = _mapResultToIds(studentIds, friends);
     return mappedResults;
